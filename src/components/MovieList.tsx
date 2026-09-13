@@ -42,7 +42,7 @@ function MovieList({
                     id={item.id}
                     title={item.title}
                     year={item.year!}
-                    genre={getGenreName(item.genres) ?? "Неизвестный жанр"}
+                    genre={item.genres ?? "Неизвестный жанр"}
                     poster={item.poster ?? ""}
                     rating={item.rating}
                     inSearch={inSearch}

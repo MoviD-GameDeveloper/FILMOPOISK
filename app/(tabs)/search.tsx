@@ -10,6 +10,7 @@ import useHomeStore from '@/src/store/useHomeStore';
 import MovieList from '@/src/components/MovieList';
 
 export function SearchScreen(){
+    const getGenreName = useHomeStore(state => state.getGenreName)
     const searchStore = useSearchStore(state => state.searchStory);
     const deleteRequest = useSearchStore(state => state.deleteRequest)
     const addRequest = useSearchStore(state => state.addRequest)
@@ -23,7 +24,7 @@ export function SearchScreen(){
         return () => clearTimeout(timer);
     }, [query]);
 
-    const { data, isLoading, isError, refetch } = useInfiniteQuery({
+    const { data, isLoading, isError, isSuccess, refetch } = useInfiniteQuery({
             queryKey: ['searchResults', debouncedQuery],
             queryFn: () =>  GetSearchResults({query:debouncedQuery}),
             initialPageParam: 1,
@@ -34,6 +35,11 @@ export function SearchScreen(){
         });
         const films = data?.pages.flat() ?? []
 
+    if (isSuccess){
+        films.map(
+          film => getGenreName(film.genres)  
+        )
+    }
 
     return(
         <SafeAreaView className="flex-1 items-center px-2.5 py-[20px] bg-[#1F1F23]">

@@ -62,8 +62,8 @@ export function HomeScreen(){
     if (isError) {
         return (
             <SafeAreaView className='flex-1 bg-[#1F1F23]'>
-                <View className='flex-1 justify-center items-center text-[#EFEFF1]'>
-                    <Text>Произошла ошибка при загрузке.</Text>
+                <View className='flex-1 justify-center items-center'>
+                    <Text className='text-[#EFEFF1] text-[18px]'>Произошла ошибка при загрузке.</Text>
                     <Pressable onPress={() => refetch()} className='w-[170px] h-[50px] bg-[#9146FF] justify-center items-center m-3'><Text className='text-white'>Перезагрузить</Text></Pressable>
                 </View>
             </SafeAreaView>
